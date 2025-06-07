@@ -1,5 +1,3 @@
-// src/assets/pages/HistoryPage.jsx
-
 import React, { useState, useMemo } from 'react';
 import { dummyHoaxData } from '../data/hoaxData';
 import { Link } from 'react-router-dom'
@@ -53,7 +51,7 @@ export default function HistoryPage() {
       <Navbar />
 
       <div className="pl-72 pt-14 pr-16 pb-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Riwayat Deteksi Hoax</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-6 ">Riwayat Deteksi Hoax</h1>
 
         {/* Filter Kontrol */}
         <div className="bg-white p-6 rounded-lg shadow-md mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -148,7 +146,7 @@ export default function HistoryPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
                     <td className="px-6 py-4 whitespace-normal text-sm text-gray-900 max-w-xs break-words">{data.judul}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <a href={data.URL} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">Link</a>
+                      <a href={data.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">Link</a>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{data.tanggal}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">{data.kategori}</td>

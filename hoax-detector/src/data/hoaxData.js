@@ -1,254 +1,100 @@
-// src/data/hoaxData.js
+// Fungsi helper untuk menghasilkan UUID sederhana
+function generateUniqueId() {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
 
-export const dummyHoaxData = [
-  {
-    id: '1',
-    judul: 'Vaksin Flu Menyebabkan Autisme pada Anak',
-    URL: 'https://example.com/hoax/vaksin-autisme',
-    kategori: 'Kesehatan',
-    keyakinan: 95, // Persentase keyakinan bahwa ini hoax
-    status: 'Hoax',
-    tanggal: '2024-01-15',
-    jenis: 'text',
-  },
-  {
-    id: '2',
-    judul: 'Pemerintah Menaikkan Pajak Gaji 200%',
-    URL: 'https://example.com/hoax/pajak-naik',
-    kategori: 'Politik',
-    keyakinan: 88,
-    status: 'Hoax',
-    tanggal: '2024-02-01',
-    jenis: 'text',
-  },
-  {
-    id: '3',
-    judul: 'Atlet XYZ Ditemukan Menggunakan Doping Terlarang',
-    URL: 'https://example.com/hoax/atlet-doping-video',
-    kategori: 'Olahraga',
-    keyakinan: 70,
-    status: 'Aman', // Asumsi setelah verifikasi, ini aman
-    tanggal: '2024-03-10',
-    jenis: 'video',
-  },
-  {
-    id: '4',
-    judul: 'Kurikulum Baru Akan Menghapus Mata Pelajaran Sejarah',
-    URL: 'https://example.com/hoax/kurikulum-sejarah',
-    kategori: 'Pendidikan',
-    keyakinan: 92,
-    status: 'Hoax',
-    tanggal: '2024-03-22',
-    jenis: 'text',
-  },
-  {
-    id: '5',
-    judul: 'Air Lemon Hangat Menyembuhkan Kanker dalam Semalam',
-    URL: 'https://example.com/hoax/air-lemon-kanker',
-    kategori: 'Kesehatan',
-    keyakinan: 98,
-    status: 'Hoax',
-    tanggal: '2024-04-05',
-    jenis: 'text',
-  },
-  {
-    id: '6',
-    judul: 'Calon Presiden A Berjanji Memberi Uang Tunai ke Setiap Warga',
-    URL: 'https://example.com/hoax/capres-uang-tunai',
-    kategori: 'Politik',
-    keyakinan: 85,
-    status: 'Hoax',
-    tanggal: '2024-04-18',
-    jenis: 'video',
-  },
-  {
-    id: '7',
-    judul: 'Skandal Pengaturan Skor di Liga Sepak Bola Lokal',
-    URL: 'https://example.com/hoax/skandal-sepakbola',
-    kategori: 'Olahraga',
-    keyakinan: 60,
-    status: 'Aman',
-    tanggal: '2024-05-01',
-    jenis: 'text',
-  },
-  {
-    id: '8',
-    judul: 'Universitas Buka Program Studi Ilmu Sihir',
-    URL: 'https://example.com/hoax/universitas-sihir',
-    kategori: 'Pendidikan',
-    keyakinan: 90,
-    status: 'Hoax',
-    tanggal: '2024-05-12',
-    jenis: 'text',
-  },
-  {
-    id: '9',
-    judul: 'Makan Bawang Putih Mentah Mencegah Virus Canggih',
-    URL: 'https://example.com/hoax/bawang-putih-virus',
-    kategori: 'Kesehatan',
-    keyakinan: 97,
-    status: 'Hoax',
-    tanggal: '2024-05-25',
-    jenis: 'text',
-  },
-  {
-    id: '10',
-    judul: 'Partai X Menerima Dana Ilegal dari Negara Asing',
-    URL: 'https://example.com/hoax/partai-dana-ilegal',
-    kategori: 'Politik',
-    keyakinan: 89,
-    status: 'Hoax',
-    tanggal: '2024-06-03',
-    jenis: 'text',
-  },
-  {
-    id: '11',
-    judul: 'Tim Basket Nasional Mundur dari Kejuaraan Dunia',
-    URL: 'https://example.com/hoax/basket-mundur-video',
-    kategori: 'Olahraga',
-    keyakinan: 75,
-    status: 'Aman',
-    tanggal: '2024-06-15',
-    jenis: 'video',
-  },
-  {
-    id: '12',
-    judul: 'Anak SD Akan Belajar Coding Sejak Kelas 1',
-    URL: 'https://example.com/hoax/sd-coding',
-    kategori: 'Pendidikan',
-    keyakinan: 65,
-    status: 'Aman',
-    tanggal: '2024-06-28',
-    jenis: 'text',
-  },
-  {
-    id: '13',
-    judul: 'Minum 8 Gelas Air Dingin Berbahaya Bagi Jantung',
-    URL: 'https://example.com/hoax/air-dingin-jantung',
-    kategori: 'Kesehatan',
-    keyakinan: 93,
-    status: 'Hoax',
-    tanggal: '2024-07-07',
-    jenis: 'text',
-  },
-  {
-    id: '14',
-    judul: 'Kebijakan Baru Pembatasan Internet Akan Diterapkan',
-    URL: 'https://example.com/hoax/pembatasan-internet',
-    kategori: 'Politik',
-    keyakinan: 87,
-    status: 'Hoax',
-    tanggal: '2024-07-20',
-    jenis: 'text',
-  },
-  {
-    id: '15',
-    judul: 'Pemain Sepak Bola Legendaris Akan Kembali Bermain',
-    URL: 'https://example.com/hoax/pemain-kembali',
-    kategori: 'Olahraga',
-    keyakinan: 50,
-    status: 'Aman',
-    tanggal: '2024-08-01',
-    jenis: 'video',
-  },
-  {
-    id: '16',
-    judul: 'Ujian Nasional Akan Dihidupkan Kembali Tahun Depan',
-    URL: 'https://example.com/hoax/ujian-nasional-kembali',
-    kategori: 'Pendidikan',
-    keyakinan: 78,
-    status: 'Hoax',
-    tanggal: '2024-08-14',
-    jenis: 'text',
-  },
-  {
-    id: '17',
-    judul: 'Pasta Gigi Bisa Menyembuhkan Jerawat dalam Semalam',
-    URL: 'https://example.com/hoax/pasta-gigi-jerawat',
-    kategori: 'Kesehatan',
-    keyakinan: 96,
-    status: 'Hoax',
-    tanggal: '2024-08-28',
-    jenis: 'text',
-  },
-  {
-    id: '18',
-    judul: 'Pemerintah Membeli Mobil Dinas Mewah Baru Miliaran Rupiah',
-    URL: 'https://example.com/hoax/mobil-dinas-mewah',
-    kategori: 'Politik',
-    keyakinan: 82,
-    status: 'Aman',
-    tanggal: '2024-09-10',
-    jenis: 'text',
-  },
-  {
-    id: '19',
-    judul: 'Pertandingan Bola Voli Ditunda Karena Insiden Aneh',
-    URL: 'https://example.com/hoax/voli-ditunda-video',
-    kategori: 'Olahraga',
-    keyakinan: 68,
-    status: 'Aman',
-    tanggal: '2024-09-23',
-    jenis: 'video',
-  },
-  {
-    id: '20',
-    judul: 'Buku Pelajaran Baru Mengandung Kesalahan Fatal',
-    URL: 'https://example.com/hoax/buku-kesalahan',
-    kategori: 'Pendidikan',
-    keyakinan: 73,
-    status: 'Aman',
-    tanggal: '2024-10-05',
-    jenis: 'text',
-  },
-  {
-    id: '21',
-    judul: 'Konsumsi Vitamin C Dosis Tinggi Cegah Semua Penyakit',
-    URL: 'https://example.com/hoax/vitamin-c-dosis-tinggi',
-    kategori: 'Kesehatan',
-    keyakinan: 94,
-    status: 'Hoax',
-    tanggal: '2024-10-18',
-    jenis: 'text',
-  },
-  {
-    id: '22',
-    judul: 'Media Sosial Akan Diblokir Permanen Tahun Depan',
-    URL: 'https://example.com/hoax/medsos-blokir',
-    kategori: 'Politik',
-    keyakinan: 91,
-    status: 'Hoax',
-    tanggal: '2024-11-01',
-    jenis: 'text',
-  },
-  {
-    id: '23',
-    judul: 'Tim E-Sport Indonesia Raih Medali Emas di Kompetisi Dunia',
-    URL: 'https://example.com/hoax/esport-emas-video',
-    kategori: 'Olahraga',
-    keyakinan: 55,
-    status: 'Aman',
-    tanggal: '2024-11-14',
-    jenis: 'video',
-  },
-  {
-    id: '24',
-    judul: 'Sekolah Wajibkan Siswa Membawa Gadget Terbaru',
-    URL: 'https://example.com/hoax/sekolah-gadget',
-    kategori: 'Pendidikan',
-    keyakinan: 80,
-    status: 'Hoax',
-    tanggal: '2024-11-27',
-    jenis: 'text',
-  },
-  {
-    id: '25',
-    judul: 'Obat Herbal Kuno Bisa Membuat Awet Muda Seketika',
-    URL: 'https://example.com/hoax/awet-muda-herbal',
-    kategori: 'Kesehatan',
-    keyakinan: 99,
-    status: 'Hoax',
-    tanggal: '2024-12-10',
-    jenis: 'text',
-  },
-];
+// Fungsi helper untuk mendapatkan tanggal acak di bulan tertentu tahun 2024
+function getRandomDateInMonth(monthIndex) {
+  const day = Math.floor(Math.random() * 28) + 1; // Maks 28 hari untuk menyederhanakan
+  const date = new Date(2024, monthIndex, day);
+  return date.toISOString().split('T')[0]; // Format YYYY-MM-DD
+}
+
+// Fungsi helper untuk memilih kategori acak
+const categories = ['Politik', 'Kesehatan', 'Olahraga', 'Pendidikan'];
+function getRandomCategory() {
+  return categories[Math.floor(Math.random() * categories.length)];
+}
+
+// Fungsi helper untuk membuat entri data dummy
+function createDummyEntry(monthIndex) {
+  const id = generateUniqueId();
+  const status = Math.random() < 0.5 ? 'Hoax' : 'Aman'; // 50% Hoax, 50% Aman
+  const keyakinan = Math.floor(Math.random() * 50) + 50; // Antara 50-99%
+  const tanggal = getRandomDateInMonth(monthIndex);
+  const kategori = getRandomCategory();
+  const isVideo = Math.random() < 0.3; // 30% kemungkinan video
+  const isTabular = Math.random() < 0.2; // 20% kemungkinan tabular (jika bukan video/text)
+
+  let entry = {
+    id: id,
+    judul: `Laporan ${kategori} ${id.substring(0, 5)}`,
+    kategori: kategori,
+    keyakinan: keyakinan,
+    status: status,
+    tanggal: tanggal,
+  };
+
+  if (isVideo) {
+    entry.type = 'video';
+    entry.url = `https://example.com/video/${id}`;
+    entry.jenis = 'video';
+    // Contoh ID video YouTube valid (jika Anda ingin mencoba embed di DetailPage)
+    // entry.videoId = Math.random() < 0.5 ? 'RK7nRsUNCJs' : 'dQw4w9WgXcQ'; 
+  } else if (isTabular) {
+    entry.type = 'tabular';
+    entry.fileType = Math.random() < 0.5 ? 'csv' : 'excel';
+    entry.fileName = `data_${kategori.toLowerCase()}_${id.substring(0, 4)}.${entry.fileType}`;
+    entry.jenis = entry.fileType; // 'csv' atau 'excel'
+    // Tambahkan preview data jika Anda memerlukannya untuk DetailPage (seperti di DetectionPage)
+    entry.previewHeaders = ['Kolom1', 'Kolom2'];
+    entry.previewRows = [{ Kolom1: 'DataA', Kolom2: 'DataB' }];
+    entry.totalRows = Math.floor(Math.random() * 100) + 20;
+    entry.totalColumns = Math.floor(Math.random() * 5) + 3;
+  } else {
+    entry.type = 'text';
+    entry.url = `https://example.com/berita/${id}`;
+    entry.jenis = 'text';
+  }
+
+  // Tambahkan sedikit bias agar ada variasi dalam jumlah Hoax vs Aman per bulan
+  // Misalnya, di bulan-bulan tertentu, 'Hoax' lebih banyak, di bulan lain 'Aman' lebih banyak
+  if (monthIndex % 3 === 0 && Math.random() < 0.7) { // Jan, Apr, Jul, Okt lebih banyak Hoax
+      entry.status = 'Hoax';
+  } else if (monthIndex % 3 === 1 && Math.random() < 0.7) { // Feb, Mei, Agu, Nov lebih banyak Aman
+      entry.status = 'Aman';
+  }
+  
+  // Sesuaikan keyakinan jika status diset secara bias
+  if (entry.status === 'Hoax' && entry.keyakinan < 70) entry.keyakinan = Math.floor(Math.random() * 30) + 70;
+  if (entry.status === 'Aman' && entry.keyakinan > 70) entry.keyakinan = Math.floor(Math.random() * 30) + 50;
+
+
+  // Pastikan URL selalu ada jika jenisnya 'text' atau 'video'
+  if (entry.type !== 'tabular' && !entry.url) {
+    entry.url = `https://example.com/fallback/${id}`;
+  }
+
+
+  return entry;
+}
+
+export const dummyHoaxData = [];
+// Buat sekitar 100 entri data
+for (let i = 0; i < 100; i++) {
+  const monthIndex = Math.floor(Math.random() * 12); // Acak bulan dari 0-11
+  dummyHoaxData.push(createDummyEntry(monthIndex));
+}
+
+// Opsional: Sortir berdasarkan tanggal agar lebih teratur untuk HistoryPage
+dummyHoaxData.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
+
+// Pastikan semua properti 'URL' menjadi 'url' untuk konsistensi
+dummyHoaxData.forEach(item => {
+    if (item.URL) { // Jika ada properti URL (huruf besar)
+        item.url = item.URL; // Salin ke properti url (huruf kecil)
+        delete item.URL; // Hapus properti URL (huruf besar)
+    }
+});
+
+console.log(dummyHoaxData.length)

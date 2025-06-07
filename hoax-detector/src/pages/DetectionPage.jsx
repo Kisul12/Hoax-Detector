@@ -218,7 +218,7 @@ export default function DetectionPage() {
       <Navbar />
 
       <div className="pl-72 pt-14 pr-16 pb-8 bg-gray-100 min-h-screen">
-        <h1 className="text-4xl font-bold text-gray-900 text-center mb-10">DETEKSI HOAX</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-10 text-center">Deteksi Hoax</h1>
 
         {/* Bagian Input dan Tombol */}
         <div className="flex flex-wrap justify-center items-center gap-4 mb-12">
@@ -231,13 +231,13 @@ export default function DetectionPage() {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
-          {/* Input file tersembunyi */}
+
+          {/* Menerima file CSV dan Excel (xlsx, xls) */}
           <input
             type="file"
-            ref={fileInputRef} // Hubungkan ref ke input file
-            className="hidden" // Sembunyikan input file
+            ref={fileInputRef}  
+            className="hidden" 
             onChange={handleFileChange}
-            // Menerima file CSV dan Excel (xlsx, xls)
             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
           />
           <button
@@ -249,12 +249,13 @@ export default function DetectionPage() {
             Deteksi URL
           </button>
           <button
-            onClick={triggerFileUpload} // Memanggil fungsi untuk memicu input file
-            className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md
+            onClick={triggerFileUpload} 
+            className="flex gap-1.5 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md
                                 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500
                                 focus:ring-opacity-75 transition duration-300"
           >
-            Upload File (CSV/Excel)
+            <img src="/upload.png" alt="" />
+            Upload File
           </button>
         </div>
 

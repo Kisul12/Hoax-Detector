@@ -1,13 +1,12 @@
-// src/assets/pages/DetailPage.jsx
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useParams, useNavigate } from 'react-router-dom'; 
 import Navbar from '../assets/components/Navbar';
-import { dummyHoaxData } from '../data/hoaxData'; // Pastikan path ini benar dan data sudah diperbarui
+import { dummyHoaxData } from '../data/hoaxData';
 
 export default function DetailPage() {
   const { id } = useParams();
   const [detailData, setDetailData] = useState(null);
-  const navigate = useNavigate(); // Inisialisasi hook useNavigate
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     // Cari data yang cocok berdasarkan ID
@@ -17,7 +16,7 @@ export default function DetailPage() {
     console.log('ID dari URL:', id);
     console.log('Data yang ditemukan:', foundData);
     if (foundData) {
-        console.log('Properti URL di data:', foundData.URL);
+        console.log('Properti URL di data:', foundData.url);
         console.log('Properti fileName di data:', foundData.fileName);
     }
   }, [id]);
@@ -33,7 +32,7 @@ export default function DetailPage() {
 
   // Fungsi untuk tombol Kembali
   const handleGoBack = () => {
-    navigate(-1); // Kembali satu langkah di riwayat browser
+    navigate(-1);
   };
 
   if (!detailData) {
@@ -53,28 +52,29 @@ export default function DetailPage() {
 
       <div className="pl-72 pt-14 pr-16 pb-8 bg-gray-100 min-h-screen">
         {/* Breadcrumb Header */}
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-left">
+        <h1 className="text-4xl font-bold text-gray-800 mb-6">
           History Deteksi Hoax - <span className="font-normal text-gray-500"> Detail History</span>
         </h1>
 
-        {/* Tombol Kembali - Baru ditambahkan */}
-        <div className="flex justify-start mb-6"> {/* Menggunakan flex dan justify-start untuk rata kiri */}
-            <button
-                onClick={handleGoBack}
-                className="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md
-                           hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400
-                           focus:ring-opacity-75 transition duration-300 flex items-center gap-2"
-            >
-                <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
-                </svg>
-                Kembali
-            </button>
-        </div>
 
 
         {/* Konten Kartu Detail */}
         <div className="bg-white rounded-lg shadow-md p-8 max-w-4xl mx-auto">
+        {/* Tombol Kembali - Baru ditambahkan */}
+          <div className="flex justify-start mb-6"> {/* Menggunakan flex dan justify-start untuk rata kiri */}
+              <button
+                  onClick={handleGoBack}
+                  className="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md
+                            hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400
+                            focus:ring-opacity-75 transition duration-300 flex items-center gap-2"
+              >
+                  <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+                  </svg>
+                  Kembali
+              </button>
+          </div>
+
           {/* Bagian Video/CSV Overview */}
           {detailData.type === 'video' && detailData.videoId ? (
             // Tampilan untuk Video
@@ -144,8 +144,8 @@ export default function DetailPage() {
             </div>
             <div className="grid grid-cols-3 gap-x-4">
               <p className="col-span-1 text-gray-700 font-bold">URL</p>
-              <p className="col-span-2 text-gray-900">: {detailData.URL ? (
-                  <a href={detailData.URL} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{detailData.URL}</a>
+              <p className="col-span-2 text-gray-900">: {detailData.url ? (
+                  <a href={detailData.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{detailData.url}</a>
                 ) : (
                   detailData.fileName
                 )}
@@ -154,6 +154,10 @@ export default function DetailPage() {
             <div className="grid grid-cols-3 gap-x-4">
               <p className="col-span-1 text-gray-700 font-bold">Kategori</p>
               <p className="col-span-2 text-gray-900">: {detailData.kategori}</p>
+            </div>
+            <div className="grid grid-cols-3 gap-x-4">
+              <p className="col-span-1 text-gray-700 font-bold">Jenis</p>
+              <p className="col-span-2 text-gray-900">: {detailData.jenis}</p>
             </div>
             <div className="grid grid-cols-3 gap-x-4">
               <p className="col-span-1 text-gray-700 font-bold">Keyakinan</p>
