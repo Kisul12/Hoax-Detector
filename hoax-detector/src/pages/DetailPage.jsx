@@ -1,8 +1,8 @@
 // src/assets/pages/DetailPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
-import Navbar from '../components/Navbar';
-import { dummyHoaxData } from '../../data/hoaxData'; // Pastikan path ini benar dan data sudah diperbarui
+import Navbar from '../assets/components/Navbar';
+import { dummyHoaxData } from '../data/hoaxData'; // Pastikan path ini benar dan data sudah diperbarui
 
 export default function DetailPage() {
   const { id } = useParams();

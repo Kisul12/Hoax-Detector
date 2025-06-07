@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../assets/components/Navbar";
 
 export default function VerificationPage() {
   return (

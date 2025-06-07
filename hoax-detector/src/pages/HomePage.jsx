@@ -1,6 +1,6 @@
-import Button from "../components/Button";
-import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom"; 
+import Navbar from "../assets/components/Navbar";
+import Button from "../assets/components/Button";
 
 export default function HomePage() {
   return (

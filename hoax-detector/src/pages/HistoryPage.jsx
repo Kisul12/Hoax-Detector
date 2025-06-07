@@ -1,9 +1,9 @@
 // src/assets/pages/HistoryPage.jsx
 
 import React, { useState, useMemo } from 'react';
-import Navbar from '../components/Navbar';
-import { dummyHoaxData } from '../../data/hoaxData';
+import { dummyHoaxData } from '../data/hoaxData';
 import { Link } from 'react-router-dom'
+import Navbar from '../assets/components/Navbar';
 
 export default function HistoryPage() {
   const [searchTerm, setSearchTerm] = useState('');

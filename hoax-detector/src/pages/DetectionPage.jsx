@@ -1,6 +1,6 @@
 // src/assets/pages/DetectionPage.jsx
 import React, { useState, useRef } from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../assets/components/Navbar';
 import * as XLSX from 'xlsx';
 
 export default function DetectionPage() {
