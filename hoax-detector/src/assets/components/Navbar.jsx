@@ -65,18 +65,19 @@ export default function Navbar() {
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-white flex flex-col">
           {/* Logo */}
-          <div className="flex items-center justify-center mt-9">
-            <Link to="/" className="flex items-center ps-2.5" onClick={() => setIsOpen(false)}> {/* Tutup sidebar saat klik logo */}
+         <div className="flex flex-col items-center justify-center mt-9">
+            <Link to="/" className="flex flex-col items-center" onClick={() => setIsOpen(false)}>
               <img
-                src="/logo.png"
-                className="h-6 me-3 sm:h-7"
+                src="/unram.png"
+                className="h-16 sm:h-20 mb-2"
                 alt="hoax detector Logo"
               />
-              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-black">
-                HoaxD
+              <span className="text-xl font-semibold whitespace-nowrap dark:text-black">
+                Hoax Detector
               </span>
             </Link>
           </div>
+
 
           {/* Menu (posisi di tengah) */}
           <div className="flex-1 flex flex-col justify-center">

@@ -39,41 +39,33 @@ function createDummyEntry(monthIndex) {
     entry.type = 'video';
     entry.url = `https://example.com/video/${id}`;
     entry.jenis = 'video';
+    entry.videoId = id; // Tambahkan videoId untuk konsistensi dengan DetailPage.jsx
   } else if (isTabular) {
     entry.type = 'tabular';
     entry.fileType = Math.random() < 0.5 ? 'csv' : 'excel';
     entry.fileName = `data_${kategori.toLowerCase()}_${id.substring(0, 4)}.${entry.fileType}`;
-    entry.jenis = entry.fileType; // 'csv' atau 'excel'
-    // Tambahkan preview data jika Anda memerlukannya untuk DetailPage (seperti di DetectionPage)
-    
+    entry.jenis = 'tabular'; // Ubah dari entry.fileType menjadi 'tabular'
     entry.previewHeaders = ['Kolom1', 'Kolom2'];
     entry.previewRows = [{ Kolom1: 'DataA', Kolom2: 'DataB' }];
     entry.totalRows = Math.floor(Math.random() * 100) + 20;
     entry.totalColumns = Math.floor(Math.random() * 5) + 3;
-  } else {
-    entry.type = 'text';
-    entry.url = `https://example.com/berita/${id}`;
-    entry.jenis = 'text';
   }
 
   // Tambahkan sedikit bias agar ada variasi dalam jumlah Hoax vs Aman per bulan
-  // Misalnya, di bulan-bulan tertentu, 'Hoax' lebih banyak, di bulan lain 'Aman' lebih banyak
   if (monthIndex % 3 === 0 && Math.random() < 0.7) { // Jan, Apr, Jul, Okt lebih banyak Hoax
-      entry.status = 'Hoax';
+    entry.status = 'Hoax';
   } else if (monthIndex % 3 === 1 && Math.random() < 0.7) { // Feb, Mei, Agu, Nov lebih banyak Aman
-      entry.status = 'Aman';
+    entry.status = 'Aman';
   }
-  
+
   // Sesuaikan keyakinan jika status diset secara bias
   if (entry.status === 'Hoax' && entry.keyakinan < 70) entry.keyakinan = Math.floor(Math.random() * 30) + 70;
   if (entry.status === 'Aman' && entry.keyakinan > 70) entry.keyakinan = Math.floor(Math.random() * 30) + 50;
-
 
   // Pastikan URL selalu ada jika jenisnya 'text' atau 'video'
   if (entry.type !== 'tabular' && !entry.url) {
     entry.url = `https://example.com/fallback/${id}`;
   }
-
 
   return entry;
 }
@@ -90,10 +82,10 @@ dummyHoaxData.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
 
 // Pastikan semua properti 'URL' menjadi 'url' untuk konsistensi
 dummyHoaxData.forEach(item => {
-    if (item.URL) { // Jika ada properti URL (huruf besar)
-        item.url = item.URL; // Salin ke properti url (huruf kecil)
-        delete item.URL; // Hapus properti URL (huruf besar)
-    }
+  if (item.URL) {
+    item.url = item.URL;
+    delete item.URL;
+  }
 });
 
-console.log(dummyHoaxData.length)
+console.log(dummyHoaxData.length);

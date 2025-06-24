@@ -56,8 +56,8 @@ export default function VerificationPage() {
     <div>
       <Navbar />
       <div className="pl-72 pt-14 pr-16 pb-8 bg-gray-100 min-h-screen">
-        <h1 className="text-4xl font-bold text-gray-800 mb-6">
-          Verifikasi Deteksi Hoax
+        <h1 className="text-4xl font-bold text-gray-800 mb-6 text-center">
+          VERIFIKASI DETEKSI HOAX
           {selectedItemForVerification && <span className="font-normal text-gray-500"> &gt; Form Verifikasi</span>}
         </h1>
 

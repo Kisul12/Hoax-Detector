@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { dummyHoaxData } from '../data/hoaxData';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Navbar from '../assets/components/Navbar';
 
 export default function HistoryPage() {
@@ -9,8 +9,9 @@ export default function HistoryPage() {
   const [filterStatus, setFilterStatus] = useState('Semua');
   const [filterJenis, setFilterJenis] = useState('Semua');
   const [sortByDate, setSortByDate] = useState('Default');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
-  // Filtering dan Sorting Data
   const filteredAndSortedData = useMemo(() => {
     let currentData = [...dummyHoaxData];
 
@@ -32,6 +33,13 @@ export default function HistoryPage() {
       currentData = currentData.filter(item => item.jenis === filterJenis);
     }
 
+    if (startDate) {
+      currentData = currentData.filter(item => new Date(item.tanggal) >= new Date(startDate));
+    }
+    if (endDate) {
+      currentData = currentData.filter(item => new Date(item.tanggal) <= new Date(endDate));
+    }
+
     if (sortByDate === 'Terbaru') {
       currentData.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
     } else if (sortByDate === 'Terlama') {
@@ -39,7 +47,7 @@ export default function HistoryPage() {
     }
 
     return currentData;
-  }, [searchTerm, filterKategori, filterStatus, filterJenis, sortByDate]);
+  }, [searchTerm, filterKategori, filterStatus, filterJenis, sortByDate, startDate, endDate]);
 
   const uniqueCategories = useMemo(() => {
     const categories = dummyHoaxData.map(item => item.kategori);
@@ -51,9 +59,8 @@ export default function HistoryPage() {
       <Navbar />
 
       <div className="pl-72 pt-14 pr-16 pb-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-6 ">Riwayat Deteksi Hoax</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-6 text-center">RIWAYAT DETEKSI HOAX</h1>
 
-        {/* Filter Kontrol */}
         <div className="bg-white p-6 rounded-lg shadow-md mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
             <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">Cari Judul:</label>
@@ -105,7 +112,7 @@ export default function HistoryPage() {
             >
               <option value="Semua">Semua</option>
               <option value="video">Video</option>
-              <option value="text">Text</option>
+              <option value="tabular">Tabular</option>
             </select>
           </div>
 
@@ -122,9 +129,31 @@ export default function HistoryPage() {
               <option value="Terlama">Terlama</option>
             </select>
           </div>
+
+          <div className="md:col-span-2 lg:col-span-2 flex gap-4">
+            <div className="w-full">
+              <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-1">Dari Tanggal:</label>
+              <input
+                type="date"
+                id="startDate"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+            </div>
+            <div className="w-full">
+              <label htmlFor="endDate" className="block text-sm font-medium text-gray-700 mb-1">Sampai Tanggal:</label>
+              <input
+                type="date"
+                id="endDate"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Tabel Data */}
         <div className="overflow-x-auto bg-white shadow-md rounded-lg p-4">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
