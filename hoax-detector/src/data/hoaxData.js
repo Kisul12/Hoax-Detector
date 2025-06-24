@@ -39,14 +39,13 @@ function createDummyEntry(monthIndex) {
     entry.type = 'video';
     entry.url = `https://example.com/video/${id}`;
     entry.jenis = 'video';
-    // Contoh ID video YouTube valid (jika Anda ingin mencoba embed di DetailPage)
-    // entry.videoId = Math.random() < 0.5 ? 'RK7nRsUNCJs' : 'dQw4w9WgXcQ'; 
   } else if (isTabular) {
     entry.type = 'tabular';
     entry.fileType = Math.random() < 0.5 ? 'csv' : 'excel';
     entry.fileName = `data_${kategori.toLowerCase()}_${id.substring(0, 4)}.${entry.fileType}`;
     entry.jenis = entry.fileType; // 'csv' atau 'excel'
     // Tambahkan preview data jika Anda memerlukannya untuk DetailPage (seperti di DetectionPage)
+    
     entry.previewHeaders = ['Kolom1', 'Kolom2'];
     entry.previewRows = [{ Kolom1: 'DataA', Kolom2: 'DataB' }];
     entry.totalRows = Math.floor(Math.random() * 100) + 20;
