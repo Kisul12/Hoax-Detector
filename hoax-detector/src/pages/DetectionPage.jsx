@@ -329,7 +329,7 @@ export default function DetectionPage() {
                               ))}
                               <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-900">
                                 {row.videoId ? (
-                                  <div className="relative w-30 h-20" style={{ paddingBottom: '56.25%' }}>
+                                  <div className="relative w-50 h-35" style={{ paddingBottom: '56.25%' }}>
                                     <iframe
                                       className="absolute top-0 left-0 w-full h-full rounded-md shadow"
                                       src="https://www.youtube.com/embed/lrMiuYS0Zv4?si=Cg1IGAXF8bFi9pz2"

@@ -52,21 +52,25 @@ export default function VerificationPage() {
     setUlasanKoreksi('');
   };
 
+  // --- FILTER DATA UNTUK DUA KOLOM ---
+  const videoItems = itemsToVerify.filter(item => item.type === 'video' && item.videoId);
+  const nonVideoItems = itemsToVerify.filter(item => !(item.type === 'video' && item.videoId));
+
   return (
     <div>
       <Navbar />
       <div className="pl-72 pt-14 pr-16 pb-8 bg-gray-100 min-h-screen">
         <h1 className="text-4xl font-bold text-gray-800 mb-6 text-center">
           VERIFIKASI DETEKSI HOAX
-          {selectedItemForVerification && <span className="font-normal text-gray-500"> &gt; Form Verifikasi</span>}
+          {selectedItemForVerification && (
+            <span className="font-normal text-gray-500"> - Form Verifikasi</span>
+          )}
         </h1>
 
         {selectedItemForVerification ? (
-          // Tampilan Form Verifikasi
           <div className="bg-white rounded-lg shadow-md p-8 max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Form Verifikasi</h2>
 
-            {/* Detail Item */}
             <div className="w-full text-left space-y-3 mb-6">
               <div className="grid grid-cols-3 gap-x-4">
                 <p className="col-span-1 text-gray-700 font-bold">Judul</p>
@@ -90,7 +94,6 @@ export default function VerificationPage() {
               </div>
             </div>
 
-            {/* Input Status */}
             <div className="mb-6 text-left">
               <label className="block text-gray-700 font-bold mb-2">Status:</label>
               <div className="flex items-center gap-4">
@@ -119,7 +122,6 @@ export default function VerificationPage() {
               </div>
             </div>
 
-            {/* Input Ulasan */}
             <div className="mb-6 text-left">
               <label htmlFor="ulasan" className="block text-gray-700 font-bold mb-2">Ulasan Koreksi:</label>
               <textarea
@@ -132,63 +134,135 @@ export default function VerificationPage() {
               ></textarea>
             </div>
 
-            {/* Tombol Aksi */}
             <div className="flex justify-center gap-4">
               <button
                 onClick={handleSubmitVerification}
-                className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-300"
+                className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700"
               >
                 Submit
               </button>
               <button
                 onClick={handleCancelForm}
-                className="px-6 py-2 bg-gray-400 text-white font-semibold rounded-lg shadow-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-75 transition duration-300"
+                className="px-6 py-2 bg-gray-400 text-white font-semibold rounded-lg shadow-md hover:bg-gray-500"
               >
                 Batal
               </button>
             </div>
           </div>
         ) : (
-          // Tampilan Daftar Item
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-            {itemsToVerify.length > 0 ? (
-              itemsToVerify.map((item) => (
-                <div key={item.id} className="bg-white rounded-lg shadow-md p-6">
-                  <div className="w-full text-left space-y-2 mb-4">
-                    <div className="grid grid-cols-2 gap-x-4">
-                      <p className="col-span-1 text-gray-700 font-bold">URL</p>
-                      <p className="col-span-1 text-gray-900">: {item.url ? (
-                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Link</a>
-                      ) : item.fileName || '-'}</p>
+          // --- BAGIAN TATA LETAK DUA KOLOM ---
+          <div className="flex flex-col lg:flex-row gap-6 items-start"> {/* items-start untuk menyelaraskan bagian atas kolom */}
+
+            {/* Kolom Kiri: Item Video */}
+            <div className="flex-1 w-full lg:w-1/2"> {/* flex-1 agar mengambil lebar yang sama, w-full untuk responsivitas */}
+              <div className="grid grid-cols-1 gap-6">
+                {videoItems.length > 0 ? (
+                  videoItems.map((item) => (
+                    <div key={item.id} className="bg-white rounded-lg shadow-md p-6 h-full flex flex-col">
+                      {/* Konten Video (selalu ada di sini) */}
+                      <div className="w-full mb-4">
+                        <div className="relative w-full h-0 pb-[56.25%] rounded-md overflow-hidden shadow">
+                         <iframe
+                          className="absolute top-0 left-0 w-full h-full rounded-md shadow"
+                          src="https://www.youtube.com/embed/lrMiuYS0Zv4?si=Cg1IGAXF8bFi9pz2"
+                          title="YouTube video player"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                        ></iframe>
+                        </div>
+                      </div>
+
+                      {/* Detail Item (flex-grow untuk mengisi ruang) */}
+                      <div className="w-full text-left space-y-2 mb-4 flex-grow">
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">URL</p>
+                          <p className="col-span-1 text-gray-900">: {item.url ? (
+                            <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Link</a>
+                          ) : item.fileName || '-'}</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">Kategori</p>
+                          <p className="col-span-1 text-gray-900">: {item.kategori}</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">Keyakinan</p>
+                          <p className="col-span-1 text-gray-900">: {item.keyakinan}%</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">Status</p>
+                          <p className={`col-span-1 font-bold ${item.status === 'Hoax' ? 'text-red-600' : 'text-green-600'}`}>: {item.status}</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">Tanggal</p>
+                          <p className="col-span-1 text-gray-900">: {item.tanggal}</p>
+                        </div>
+                      </div>
+
+                      {/* Tombol Verifikasi (mt-auto untuk menempel ke bawah) */}
+                      <button
+                        onClick={() => handleVerifyClick(item)}
+                        className="w-full mt-auto px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700"
+                      >
+                        Verifikasi
+                      </button>
                     </div>
-                    <div className="grid grid-cols-2 gap-x-4">
-                      <p className="col-span-1 text-gray-700 font-bold">Kategori</p>
-                      <p className="col-span-1 text-gray-900">: {item.kategori}</p>
+                  ))
+                ) : (
+                  <p className="text-gray-500 text-center">Tidak ada item video yang perlu diverifikasi.</p>
+                )}
+              </div>
+            </div>
+
+            {/* Kolom Kanan: Item Non-Video */}
+            <div className="flex-1 w-full lg:w-1/2">
+              <div className="grid grid-cols-1 gap-6">
+                {nonVideoItems.length > 0 ? (
+                  nonVideoItems.map((item) => (
+                    <div key={item.id} className="bg-white rounded-lg shadow-md p-6 h-full flex flex-col">
+                      {/* TIDAK ADA BAGIAN VIDEO UNTUK ITEM NON-VIDEO */}
+
+                      {/* Detail Item (flex-grow untuk mengisi ruang) */}
+                      <div className="w-full text-left space-y-2 mb-4 flex-grow">
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">URL</p>
+                          <p className="col-span-1 text-gray-900">: {item.url ? (
+                            <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Link</a>
+                          ) : item.fileName || '-'}</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">Kategori</p>
+                          <p className="col-span-1 text-gray-900">: {item.kategori}</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">Keyakinan</p>
+                          <p className="col-span-1 text-gray-900">: {item.keyakinan}%</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">Status</p>
+                          <p className={`col-span-1 font-bold ${item.status === 'Hoax' ? 'text-red-600' : 'text-green-600'}`}>: {item.status}</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4">
+                          <p className="col-span-1 text-gray-700 font-bold">Tanggal</p>
+                          <p className="col-span-1 text-gray-900">: {item.tanggal}</p>
+                        </div>
+                      </div>
+
+                      {/* Tombol Verifikasi (mt-auto untuk menempel ke bawah) */}
+                      <button
+                        onClick={() => handleVerifyClick(item)}
+                        className="w-full mt-auto px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700"
+                      >
+                        Verifikasi
+                      </button>
                     </div>
-                    <div className="grid grid-cols-2 gap-x-4">
-                      <p className="col-span-1 text-gray-700 font-bold">Keyakinan</p>
-                      <p className="col-span-1 text-gray-900">: {item.keyakinan}%</p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-x-4">
-                      <p className="col-span-1 text-gray-700 font-bold">Status</p>
-                      <p className={`col-span-1 font-bold ${item.status === 'Hoax' ? 'text-red-600' : 'text-green-600'}`}>: {item.status}</p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-x-4">
-                      <p className="col-span-1 text-gray-700 font-bold">Tanggal</p>
-                      <p className="col-span-1 text-gray-900">: {item.tanggal}</p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => handleVerifyClick(item)}
-                    className="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-300"
-                  >
-                    Verifikasi
-                  </button>
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-500 col-span-full text-center">Tidak ada item yang perlu diverifikasi saat ini.</p>
-            )}
+                  ))
+                ) : (
+                  <p className="text-gray-500 text-center">Tidak ada item non-video yang perlu diverifikasi.</p>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </div>

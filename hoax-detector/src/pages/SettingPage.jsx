@@ -52,27 +52,6 @@ export default function SettingPage() {
           </form>
         </Section>
 
-        {/* Activity Logs */}
-        <Section title="Log Aktivitas" theme={theme}>
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Admin</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aktivitas</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              <tr>
-                <td className="px-6 py-4 text-sm">2025-06-24 11:37</td>
-                <td className="px-6 py-4 text-sm">John Doe</td>
-                <td className="px-6 py-4 text-sm">Mengubah tema ke Gelap</td>
-              </tr>
-            </tbody>
-          </table>
-          <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={() => Swal.fire({ icon: 'info', title: 'Ekspor Log', text: 'Fitur ini akan segera tersedia.' })}>Ekspor Log</button>
-        </Section>
-
         {/* Security */}
         <Section title="Keamanan & Autentikasi" theme={theme}>
           <ul className="space-y-4">

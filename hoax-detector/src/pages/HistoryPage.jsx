@@ -58,7 +58,7 @@ export default function HistoryPage() {
     <div>
       <Navbar />
 
-      <div className="pl-72 pt-14 pr-16 pb-8">
+      <div className="bg-gray-100 pl-72 pt-14 pr-16 pb-8">
         <h1 className="text-4xl font-bold text-gray-800 mb-6 text-center">RIWAYAT DETEKSI HOAX</h1>
 
         <div className="bg-white p-6 rounded-lg shadow-md mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
